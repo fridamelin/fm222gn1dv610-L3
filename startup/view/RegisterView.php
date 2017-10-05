@@ -1,6 +1,7 @@
 <?php
 
 
+
 class RegisterView {
 	private static $login = 'RegisterView::UserName';
 	private static $messageId = 'RegisterView::Message';
@@ -45,7 +46,7 @@ class RegisterView {
 		return $_POST[self::$password];
 	}
 	public function confirmPassword() {
-		return $_POST[self:$checkPassword];
+		return $_POST[self::$checkPassword];
 	}
 	public function regButton() {
 		return $_POST[self::$register];

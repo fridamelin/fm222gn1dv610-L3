@@ -1,5 +1,6 @@
 <?php
 
+
 class DateTimeView {
 	public function show() {
 		$day = date("l");

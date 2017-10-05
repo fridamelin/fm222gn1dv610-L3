@@ -1,5 +1,6 @@
 <?php
 
+
 require_once("view/RegisterView.php");
 
 class RegisterModel {
