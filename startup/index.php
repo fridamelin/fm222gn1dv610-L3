@@ -4,6 +4,7 @@ require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php'); //denna ska vara kvar
 require_once('view/RegisterView.php');
+require_once('model/LoginModel.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
@@ -14,9 +15,12 @@ $dtv = new DateTimeView();
 $lv = new LayoutView();
 $rv = new RegisterView();
 
+$lm = new LoginModel();
+$rm = new RegisterModel();
+
 session_start();
 
-$v->login();
+$lm->login();
 if(isset($_SESSION['username'])){
     if(isset($_GET['register'])){
         $lv->render(true, $rv, $dtv);

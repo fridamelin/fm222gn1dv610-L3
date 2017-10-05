@@ -1,13 +1,14 @@
 <?php
 
-namespace model; 
 
 require_once("view/LoginView.php");
 
 class LoginModel {
+	
+	private $loginView;
 
     public function __construct() {
-        $loginView = new \view\LoginView();
+        $this->loginView = new \view\LoginView();
     }
 
 		//DENNA KOMMER FRÅN LOGINVIEW//

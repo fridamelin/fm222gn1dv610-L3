@@ -10,24 +10,6 @@ class RegisterView {
 	private static $usernameStay = '';
 	private $message = '';
 
-	public function register(){
-		if(isset($_POST[self::$register])){
-			if(strlen($_POST[self::$login]) < 3){
-				 $this->message .= 'Username has too few characters, at least 3 characters.';
-				 $this->propUsername();
-				}
-				if(strlen($_POST[self::$password]) < 6){
-				 $this->message .= '<br>Password has too few characters, at least 6 characters.';
-					if(strlen($_POST[self::$login]) > 3){
-						$this->propUsername();
-					}
-				}
-				if($_POST[self::$password] != $_POST[self::$checkPassword]){
-					$this->message .= 'Passwords do not match.';
-					$this->propUsername();
-				}
-			}
-		}
 	
 	
 	public function response() {
@@ -55,9 +37,18 @@ class RegisterView {
 					';
 	}
 
-	private function propUsername(){
+	public function propUsername(){
 		$input = $_POST[self::$login];
 				return self::$usernameStay = $input;
+	}
+	public function propPassword() {
+		return $_POST[self::$password];
+	}
+	public function confirmPassword() {
+		return $_POST[self:$checkPassword];
+	}
+	public function regButton() {
+		return $_POST[self::$register];
 	}
 
 	private function renderIsLoggedIn($isLoggedIn) {
