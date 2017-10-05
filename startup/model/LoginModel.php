@@ -1,22 +1,20 @@
 <?php
 
-
-
-require_once("view/LoginView.php");
-
 class LoginModel {
 	
 	private $loginView;
 
     public function __construct() {
-        $this->loginView = new \view\LoginView();
+        $this->loginView = new LoginView();
     }
 
 		//DENNA KOMMER FRÅN LOGINVIEW//
     public function login(){
 		$username = $this->loginView->getRequestUserName();
         $password = $this->loginView->getRequestPassword();
-        $keep = $this->loginView->keep();
+		$keep = $this->loginView->keep();
+		$cookieName = $this->loginView->getCookieName();
+		$cookiePassw = $this->loginView->getCookiePassw();
         $logout = $this->loginView->logout();
 
 		 $random = password_hash("Password", PASSWORD_DEFAULT);
@@ -55,21 +53,21 @@ class LoginModel {
 			{
 				$this->message = "Username is missing";
 			}
-		} else if (isset($_COOKIE[self::$cookieName]) && isset($_COOKIE[self::$cookiePassword]))
+		} else if (isset($cookieName) && isset($cookiePassw))
 			{
-				if($_COOKIE[self::$cookieName] == 'Admin' && password_verify("Password", $_COOKIE[self::$cookiePassword]))
+				if($cookieName == 'Admin' && password_verify("Password", $cookiePassw))
 				{
 					if(!isset($_SESSION['username']) && !isset($_SESSION['password']))
 					{
 						$this->message = "Welcome back with cookie";
 					} 
-				$_SESSION['username'] = $_COOKIE[self::$cookieName];
-				$_SESSION['password'] = $_COOKIE[self::$cookiePassword];
+				$_SESSION['username'] = $cookieName;
+				$_SESSION['password'] = $cookiePassw;
 				} else 
 				{
 					$this->message = "Wrong information in cookies";
-					setcookie(self::$cookieName, '', time()-3600);
-					setcookie(self::$cookiePassword, '', time()-3600);
+					setcookie($cookieName, '', time()-3600);
+					setcookie($cookiePassw, '', time()-3600);
 				}
 			}
 		if(isset($logout))

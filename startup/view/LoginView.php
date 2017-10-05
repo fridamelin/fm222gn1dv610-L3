@@ -1,9 +1,5 @@
 <?php
 
-
-
-require_once("model/LoginModel.php");
-
 class LoginView {
 
 	private static $login = 'LoginView::Login';
@@ -76,18 +72,40 @@ class LoginView {
 	}
 
 	public function getRequestUserName() {
-		$inputUser = $_POST[self::$name];
-		self::$keepUsername = $inputUser;
-		return $inputUser;
+		if (isset($_POST[self::$name])) {
+			$inputUser = $_POST[self::$name];
+			self::$keepUsername = $inputUser;
+			return $inputUser;
+		}
 	}	
 	public function getRequestPassword() {
-		return $_POST[self::$password];	
+		if(isset($_POST[self::$password])){
+			return $_POST[self::$password];
+		}
+			
 	}	
 	public function keep() {
-		return $_POST[self::$keep];
+		if(isset($_POST[self::$keep])){
+			return $_POST[self::$keep];
+		}
 	}
+
+	public function getCookieName() {
+		if(isset($_COOKIE[self::$cookieName])){
+			return $_COOKIE[self::$cookieName];
+		}
+	}
+
+	public function getCookiePassw() {
+		if(isset($_COOKIE[self::$cookiePassword])){
+			return $_COOKIE[self::$cookiePassword];
+		}
+	}
+
 	public function logout() {
-		return $_POST[self::$logout];
+		if(isset($_POST[self::$logout])){
+			return $_POST[self::$logout];
+		}
 	}
 
 }

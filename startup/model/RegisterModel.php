@@ -1,14 +1,11 @@
 <?php
 
-
-require_once("view/RegisterView.php");
-
 class RegisterModel {
 
     private $registerView;
     
         public function __construct() {
-            $this->registerView = new \view\RegisterView();
+            $this->registerView = new RegisterView();
         }
 
     public function newUser() {
