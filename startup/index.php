@@ -39,7 +39,4 @@ $loginModel = $lc->userWantsToLogin();
 //     }
 // }
 
-if(isset($_POST['LoginView::Logout'])){
-    unset($_SESSION['username']);
-}
 
