@@ -6,18 +6,28 @@ class LoginController {
     private $loginView;
     private $loginModel; 
 
-    public function __construct($view, $model) {
+    public function __construct($view) {
         $this->loginView = $view; 
-        $this->loginModel = $model;
+        $this->loginModel = new \model\LoginModel();
+        
     }
 
     public function userWantsToLogin() {
 
         //kollar om man har postar login knapp
-        //
+        if ($this->loginView->userPressedLoginButton()) {
+            //Hämta username från view - validera check() -  set() 	$this->setUsername($name);
+            //Hämta password från view - validera check() -  set() 	$this->setPassword($password);
+            //model->Login()
 
-       //Hämta username från view - validera check() -  set() 	$this->setUsername($name);
 
-        //return this->loginModel; 
+
+
+        }
+        else {
+            //logout
+        }
+
+        return $this->loginModel; 
     }
 }

@@ -16,16 +16,47 @@ class LoginView {
     private $message = '';
 	private $loginModel;
 
-	//public function __construct() {
-	//	$this->loginModel = new LoginModel();
-	//}
-
 	public function response($loginModel) {
 		$this->loginModel = $loginModel; 
 
-		//kolla om isLoggedIn()
-		//Om man är inloggad visa generateLogoutButtonHTML($this->message);
-		//Annars visa generateLoginFormHTML($this->message);
+		if($loginModel->isLoggedIn()){
+			return $this->generateLogoutButtonHTML($this->message);
+		} else 
+		{
+			return $this->generateLoginFormHTML($this->message);
+		}
+	}
+
+	public function userPressedLoginButton() {
+        return isset($_POST[self::$login]);
+	}
+
+	public function getRequestUserName() {
+        if (isset($_POST[self::$name])) {
+            $inputUser = $_POST[self::$name];
+            self::$keepUsername = $inputUser;
+            return $inputUser;
+        }
+	}   
+	
+    public function getRequestPassword() {
+            return isset($_POST[self::$password]);  
+	}   
+	
+    public function keep() {
+            return isset($_POST[self::$keep]);
+    }
+
+    public function getCookieName() {
+            return isset($_COOKIE[self::$cookieName]);
+    }
+
+    public function getCookiePassword() {
+            return isset($_COOKIE[self::$cookiePassword]);
+	}
+	
+	public function userPressedLogoutButton() {
+		return isset($_POST[self::$logout]);
 	}
 
 	private function generateLogoutButtonHTML($message) {
@@ -36,6 +67,7 @@ class LoginView {
 		</form>
 	';
 	}
+
 	private function generateLoginFormHTML($message) {
 		return '
 		<form method="post" > 
@@ -57,35 +89,4 @@ class LoginView {
 		</form>
 		';		
 	}
-	
-	public function userPressedLoginButton() {
-        return isset($_POST[self::$login]);
-	}
-	public function getRequestUserName() {
-        if (isset($_POST[self::$name])) {
-            $inputUser = $_POST[self::$name];
-            self::$keepUsername = $inputUser;
-            return $inputUser;
-        }
-    }   
-    public function getRequestPassword() {
-            return isset($_POST[self::$password]);  
-    }   
-    public function keep() {
-            return isset($_POST[self::$keep]);
-    }
-
-    public function getCookieName() {
-            return isset($_COOKIE[self::$cookieName]);
-    }
-
-    public function getCookiePassword() {
-            return isset($_COOKIE[self::$cookiePassword]);
-        
-    }
-	public function userPressedLogoutButton() {
-		return isset($_POST[self::$logout]);
-	}
-
-	
 }
