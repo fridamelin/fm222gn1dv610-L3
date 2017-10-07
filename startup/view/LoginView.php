@@ -4,7 +4,7 @@ namespace view;
 
 class LoginView {
 
-	private static $login = 'LoginView::Login';
+    private static $login = 'LoginView::Login';
     private static $logout = 'LoginView::Logout';
     private static $name = 'LoginView::UserName';
     private static $password = 'LoginView::Password';
@@ -14,7 +14,7 @@ class LoginView {
     private static $messageId = 'LoginView::Message';
     private static $keepUsername = '';
     private $message = '';
-	private $loginModel;
+    private $loginModel;
 
 	public function response($loginModel) {
 		$this->loginModel = $loginModel; 
@@ -40,7 +40,9 @@ class LoginView {
 	}   
 	
     public function getRequestPassword() {
-            return isset($_POST[self::$password]);  
+	    if(isset($_POST['password'])){
+		return ($_POST[self::$password]); 
+	    }
 	}   
 	
     public function keep() {

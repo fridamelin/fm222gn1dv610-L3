@@ -7,37 +7,42 @@ class LoginModel {
 	private $password;
 	private $message = '';
 
-	public function getUsername() {
+	public function getUsername($usernameInputView) {
+		$this->username = $usernameInputView;
 		//Hämta userinput från controller (som egentligen kommer från view POST)
 	}
 	
-	public function getPassword() {
+	public function getPassword($passwordInputView) {
+		$this->password = $passwordInputView;
 		//Hämta userinput från controller (som egentligen kommer från view POST)
 	}
 
-	public function setUsername($name) {
-		$username = $name;
-	}
+	//public function setUsername($name) {
+		//$username = $name;
+	//}
 
-	public function setPassword() {
-		$password = $inputPassword;
-	}
+	//public function setPassword($inputPassword) {
+	//	$password = $inputPassword;
+	//}
 
-	public function checkUsername($name) {
-		if($name != 'Admin'){
+	public function checkUsername($usernameInputView) {
+		if($usernameInputView != 'Admin'){
 			$this->message = "Username is missing";
 		}
 	}
 
-	public function checkPassword() {
-		if($inputPassword != 'Password') {
+	public function checkPassword($passwordInputView) {
+		if($passwordInputView != 'Password') {
 			$this->message = "Password is missing";
 		}
 	}
 
-	public function login() {
-		$_SESSION['username'] = $username;
-		$_SESSION['password'] = $password;
+	public function login($usernameInputView,$passwordInputView) {
+		if($usernameInputView == 'Admin' && $passwordInputView == 'Password'){
+			$_SESSION['username'] = $username;
+			$_SESSION['password'] = $password;
+		}
+	
 	}
 
 	public function isLoggedIn() {
