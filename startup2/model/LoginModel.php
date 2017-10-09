@@ -37,12 +37,11 @@ class LoginModel {
 		}
 	}
 
-	public function login($usernameInputView,$passwordInputView) {
+	public function login($usernameInputView, $passwordInputView) {
 		if($usernameInputView == 'Admin' && $passwordInputView == 'Password'){
-			$_SESSION['username'] = $username;
-			$_SESSION['password'] = $password;
+			$_SESSION['username'] = $usernameInputView;
+			$_SESSION['password'] = $passwordInputView;
 		}
-	
 	}
 
 	public function isLoggedIn() {

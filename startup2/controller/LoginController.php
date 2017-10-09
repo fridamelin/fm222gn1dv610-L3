@@ -16,7 +16,6 @@ class LoginController {
 
         if ($this->loginView->userPressedLoginButton()) {
 
-
             $usernameInputView =  $this->loginView->getRequestUserName();
             $passwordInputView = $this->loginView->getRequestPassword(); 
 

@@ -40,7 +40,7 @@ class LoginView {
 	}   
 	
     public function getRequestPassword() {
-	    if(isset($_POST['password'])){
+	    if(isset($_POST[self::$password])){
 		return ($_POST[self::$password]); 
 	    }
 	}   
