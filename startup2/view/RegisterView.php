@@ -1,5 +1,7 @@
 <?php
 
+namespace view;
+
 class RegisterView {
 	private static $login = 'RegisterView::UserName';
 	private static $messageId = 'RegisterView::Message';
@@ -10,13 +12,16 @@ class RegisterView {
 	private $message = '';
 	private $registerModel; 
 
-
-	public function showRegisterForm($registerModel) {
-		$this->registerModel = $registerModel; 
-		if($registerModel->register()){
-		return $this->response($this->message);
-		}
+	public function setRegisterMessages() {
+		$this->message = $message; 
 	}
+
+	// public function showRegisterForm($registerModel) {
+	// 	$this->registerModel = $registerModel; 
+	// 	if($registerModel->register()){
+	// 	return $this->response($this->message);
+	// 	}
+	// }
 
 	public function response() {
 	 
@@ -42,17 +47,17 @@ class RegisterView {
 					';
 	}
 
-	public function propUsername(){
+	public function getChosenUsername(){
 		$input = $_POST[self::$login];
 		return self::$usernameStay = $input;
 	}
-	public function propPassword() {
+	public function getChosenPassword() {
 		return $_POST[self::$password];
 	}
-	public function confirmPassword() {
+	public function getConfirmedPassword() {
 		return $_POST[self::$checkPassword];
 	}
-	public function regButton() {
+	public function userPressedRegisterButton() {
 		return $_POST[self::$register];
 	}
 

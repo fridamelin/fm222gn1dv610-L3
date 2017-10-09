@@ -5,10 +5,14 @@ namespace controller;
 class LoginController {
     private $loginView;
     private $loginModel; 
+    private $registerView;
+    private $registerModel;
 
-    public function __construct($view) {
+    public function __construct($view, $registerView) {
         $this->loginView = $view; 
         $this->loginModel = new \model\LoginModel();
+        $this->registerView = $registerView;
+        $this->registerModel = new \model\RegisterModel();
         
     }
 
@@ -41,6 +45,27 @@ class LoginController {
             }
         }
         return $this->loginModel; 
+    }
+
+    public function userWantsToRegister() {
+
+        if($this->registerView->userPressedRegisterButton()) {
+
+            $username = $this->registerView->getChosenUsername();
+            $password = $this->registerView->getChosenPassword();
+            $repeatedPassword = $this->registerView->getConfirmedPassword();
+            $this->registerModel->getUser($username);
+            $this->registerModel->getPassword($password);
+            $this->registerModel->getRepeatedPassword($repeatedPassword);
+
+            $this->registerModel->checkChosenUsername($username);
+            $message = $this->registerModel->getRegisterMessages();
+            $this->registerView->setRegisterMessages($message);
+
+            $this->registerModel->checkChosenPassword($password);
+            $messages = $this->registerModel->getRegisterMessages();
+            $this->registerView->setRegisterMessages($message);
+        }
     }
 
 }

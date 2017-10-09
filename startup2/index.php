@@ -15,15 +15,16 @@ ini_set('display_errors', 'On');
 $v = new \view\LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
-$rv = new RegisterView();
-$lc = new \controller\LoginController($v);
+$rv = new \view\RegisterView();
+$lc = new \controller\LoginController($v, $rv);
 
 
-$rm = new RegisterModel();
+$rm = new \model\RegisterModel();
 
 session_start();
 
 $loginModel = $lc->userWantsToLogin();
+//$loginModel = $lc->userWantsToRegister();
 
  if(isset($_SESSION['username'])){
     
