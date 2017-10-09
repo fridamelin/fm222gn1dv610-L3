@@ -16,6 +16,10 @@ class LoginView {
     private $message = '';
     private $loginModel;
 
+	public function setMessage($message) {
+		$this->message = $message;
+	}
+
 	public function response($loginModel) {
 		$this->loginModel = $loginModel; 
 

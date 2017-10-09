@@ -18,20 +18,29 @@ class LoginController {
 
             $usernameInputView =  $this->loginView->getRequestUserName();
             $passwordInputView = $this->loginView->getRequestPassword(); 
-
             $this->loginModel->getUsername($usernameInputView);
             $this->loginModel->getPassword($passwordInputView);
-            $this->loginModel->checkUsername($usernameInputView);
-            $this->loginModel->checkPassword($passwordInputView);
-            //$this->loginModel->setUsername($name);
-            //$this->loginModel->setPassword($inputPassword);
-            $this->loginModel->login($usernameInputView, $passwordInputView);
 
+            $this->loginModel->checkPassword($passwordInputView, $usernameInputView);
+            $message = $this->loginModel->getMessage();
+            $this->loginView->setMessage($message);
+
+            $this->loginModel->checkUsername($usernameInputView, $passwordInputView);
+            $message = $this->loginModel->getMessage();
+            $this->loginView->setMessage($message);
+
+            $this->loginModel->login($usernameInputView, $passwordInputView);
+            $message = $this->loginModel->getMessage();
+            $this->loginView->setMessage($message);
         }
         else {
-            //logout
+            if($this->loginView->userPressedLogoutButton()) {
+                $this->loginModel->logout();
+                $message = $this->loginModel->getMessage();
+                $this->loginView->setMessage($message);
+            }
         }
-
         return $this->loginModel; 
     }
+
 }

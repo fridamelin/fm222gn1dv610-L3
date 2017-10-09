@@ -1,7 +1,5 @@
 <?php
 
-
-
 class RegisterView {
 	private static $login = 'RegisterView::UserName';
 	private static $messageId = 'RegisterView::Message';
@@ -10,11 +8,17 @@ class RegisterView {
 	private static $register = 'RegisterView::Register';
 	private static $usernameStay = '';
 	private $message = '';
+	private $registerModel; 
 
-	
-	
+
+	public function showRegisterForm($registerModel) {
+		$this->registerModel = $registerModel; 
+		if($registerModel->register()){
+		return $this->response($this->message);
+		}
+	}
+
 	public function response() {
-		$this->register();
 	 
 		return '
 			<h2>Register new user</h2>
@@ -40,7 +44,7 @@ class RegisterView {
 
 	public function propUsername(){
 		$input = $_POST[self::$login];
-				return self::$usernameStay = $input;
+		return self::$usernameStay = $input;
 	}
 	public function propPassword() {
 		return $_POST[self::$password];

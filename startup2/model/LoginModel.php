@@ -9,46 +9,56 @@ class LoginModel {
 
 	public function getUsername($usernameInputView) {
 		$this->username = $usernameInputView;
-		//Hämta userinput från controller (som egentligen kommer från view POST)
 	}
 	
 	public function getPassword($passwordInputView) {
 		$this->password = $passwordInputView;
-		//Hämta userinput från controller (som egentligen kommer från view POST)
 	}
 
-	//public function setUsername($name) {
-		//$username = $name;
-	//}
-
-	//public function setPassword($inputPassword) {
-	//	$password = $inputPassword;
-	//}
-
-	public function checkUsername($usernameInputView) {
-		if($usernameInputView != 'Admin'){
-			$this->message = "Username is missing";
+	public function checkPassword($passwordInputView, $usernameInputView) {
+		if($passwordInputView == '') {
+			$this->message = "Password is missing";
 		}
-	}
-
-	public function checkPassword($passwordInputView) {
-		if($passwordInputView != 'Password') {
+		else if($passwordInputView != 'Password' && $usernameInputView == 'Admin') {
+			$this->message = "Wrong name or password";
+		}
+		else if($usernameInputView == 'Admin' && $passwordInputView == ''){
 			$this->message = "Password is missing";
 		}
 	}
 
+	public function checkUsername($usernameInputView, $passwordInputView) {
+		if($usernameInputView == '' &&  $passwordInputView = '') {
+			$this->message = "Username is missing";
+		}
+		else if($usernameInputView == ''){
+			$this->message = "Username is missing";
+		}
+		else if($passwordInputView == 'Password' && $usernameInputView == '') {
+			$this->message = "Username is missing";
+		}
+		else if($passwordInputView == 'Password' && $usernameInputView != 'Admin') {
+			$this->message = "Wrong name or password";
+		}
+	}
 	public function login($usernameInputView, $passwordInputView) {
 		if($usernameInputView == 'Admin' && $passwordInputView == 'Password'){
+			$this->message = "Welcome";
 			$_SESSION['username'] = $usernameInputView;
 			$_SESSION['password'] = $passwordInputView;
 		}
 	}
 
+	public function getMessage() {
+		return $this->message;
+	}
+
 	public function isLoggedIn() {
 		return isset($_SESSION['username']);
 	}
-
 	public function logout() {
-		unset($_SESSION['username']);		
+		$this->message = "Bye bye";
+		unset($_SESSION['username']);
+		unset($_SESSION['password']);			
 	}
 }

@@ -4,11 +4,7 @@ class RegisterModel {
 
     private $registerView;
     
-        public function __construct() {
-            $this->registerView = new RegisterView();
-        }
-
-    public function newUser() {
+   	public function newUser() {
         $userRequest = $this->registerView->propUsername();
         $passwordRequest = $this->registerView->propPassword();
         $repeatPassword = $this->registerView->confirmPassword();

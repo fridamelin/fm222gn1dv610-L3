@@ -25,19 +25,21 @@ session_start();
 
 $loginModel = $lc->userWantsToLogin();
 
-
  if(isset($_SESSION['username'])){
+    
      if(isset($_GET['register'])){
          $lv->render($loginModel, $v, $dtv);
      }else {
          $lv->render($loginModel, $v, $dtv);
      }
  }else { 
+    
       if(isset($_GET['register'])){
          $lv->render($loginModel, $rv, $dtv);
      }else {
          $lv->render($loginModel, $v, $dtv);
      }
+     
  }
 
 
