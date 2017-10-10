@@ -13,26 +13,26 @@ class RegisterModel {
 		return $this->message;
 	}
 
-	public function getUser() {
+	public function setUser($username) {
 		$this->usernameInputRegister = $username;
 	}
-	public function getPassword() {
+	public function setPassword($password) {
 		$this->passwordInputRegister = $password;
 	}
-	public function getRepeatedPassword() {
+	public function setRepeatedPassword($repeatedPassword) {
 		$this->confirmedPassword = $repeatedPassword;
 	}
 
 	public function checkChosenUsername() {
-		if(strlen($username) < 3) {
+		if(strlen($this->usernameInputRegister) < 3) {
 			$this->message .= "Username has too few characters, at least 3 characters.";
 		}
 	}
 	public function checkChosenPassword() {
-		if(strlen($password) < 6) {
+		if(strlen($this->passwordInputRegister) < 6) {
 			$this->message .= "<br>Password has too few characters, at least 6 characters.";
 		}
-			if($password != $repeatedPassword) {
+			if($this->passwordInputRegister != $this->confirmedPassword) {
 			$this->message .= "Passwords do not match.";
 			}
 	}

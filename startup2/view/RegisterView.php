@@ -12,16 +12,9 @@ class RegisterView {
 	private $message = '';
 	private $registerModel; 
 
-	public function setRegisterMessages() {
+	public function setRegisterMessages($message) {
 		$this->message = $message; 
 	}
-
-	// public function showRegisterForm($registerModel) {
-	// 	$this->registerModel = $registerModel; 
-	// 	if($registerModel->register()){
-	// 	return $this->response($this->message);
-	// 	}
-	// }
 
 	public function response() {
 	 
@@ -58,7 +51,7 @@ class RegisterView {
 		return $_POST[self::$checkPassword];
 	}
 	public function userPressedRegisterButton() {
-		return $_POST[self::$register];
+		return isset($_POST[self::$register]);
 	}
 
 	private function renderIsLoggedIn($isLoggedIn) {

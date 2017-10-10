@@ -57,7 +57,7 @@ class LoginModel {
 		return isset($_SESSION['username']);
 	}
 	public function logout() {
-		$this->message = "Bye bye";
+		$this->message = "Bye bye!";
 		unset($_SESSION['username']);
 		unset($_SESSION['password']);			
 	}

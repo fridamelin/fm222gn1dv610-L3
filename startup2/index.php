@@ -17,30 +17,25 @@ $dtv = new DateTimeView();
 $lv = new LayoutView();
 $rv = new \view\RegisterView();
 $lc = new \controller\LoginController($v, $rv);
-
-
 $rm = new \model\RegisterModel();
 
 session_start();
 
 $loginModel = $lc->userWantsToLogin();
-//$loginModel = $lc->userWantsToRegister();
+//$registerModel = $lc->userWantsToRegister();
 
- if(isset($_SESSION['username'])){
-    
-     if(isset($_GET['register'])){
+if(isset($_SESSION['username'])){
+    if(isset($_GET['register'])){
          $lv->render($loginModel, $v, $dtv);
-     }else {
+    }else {
          $lv->render($loginModel, $v, $dtv);
-     }
- }else { 
-    
+    }
+}else { 
       if(isset($_GET['register'])){
          $lv->render($loginModel, $rv, $dtv);
-     }else {
+    }else {
          $lv->render($loginModel, $v, $dtv);
-     }
-     
- }
+    }   
+}
 
 

@@ -54,9 +54,9 @@ class LoginController {
             $username = $this->registerView->getChosenUsername();
             $password = $this->registerView->getChosenPassword();
             $repeatedPassword = $this->registerView->getConfirmedPassword();
-            $this->registerModel->getUser($username);
-            $this->registerModel->getPassword($password);
-            $this->registerModel->getRepeatedPassword($repeatedPassword);
+            $this->registerModel->setUser($username);
+            $this->registerModel->setPassword($password);
+            $this->registerModel->setRepeatedPassword($repeatedPassword);
 
             $this->registerModel->checkChosenUsername($username);
             $message = $this->registerModel->getRegisterMessages();
@@ -67,5 +67,5 @@ class LoginController {
             $this->registerView->setRegisterMessages($message);
         }
     }
-
+    
 }
