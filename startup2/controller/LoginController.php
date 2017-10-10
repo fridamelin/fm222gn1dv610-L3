@@ -36,6 +36,14 @@ class LoginController {
             $this->loginModel->login($usernameInputView, $passwordInputView);
             $message = $this->loginModel->getMessage();
             $this->loginView->setMessage($message);
+
+            if($this->loginView->keepUserLoggedInButton()) {
+                $sessionUsername = $this->loginModel->getSessionUsername();
+                $this->loginView->setSessionUsername($sessionUsername);
+
+                $sessionPassword = $this->loginModel->getSessionPassword();
+                $this->loginView->setSessionPassword($sessionPassword);
+            }
         }
         else {
             if($this->loginView->userPressedLogoutButton()) {

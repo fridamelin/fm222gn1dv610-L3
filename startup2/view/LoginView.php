@@ -14,11 +14,24 @@ class LoginView {
     private static $messageId = 'LoginView::Message';
     private static $keepUsername = '';
     private $message = '';
-    private $loginModel;
+	private $loginModel;
+	private $sessionUsername;
+	private $sessionPassword;
 
 	public function setMessage($message) {
 		$this->message = $message;
 	}
+
+
+	public function setSessionUsername($sessionUsername) {
+		$this->sessionUsername = $sessionUsername;
+	}
+
+	public function setSessionPassword($sessionPassword) {
+		$this->setSessionPassword = $sessionPassword;
+	}
+
+
 
 	public function response($loginModel) {
 		$this->loginModel = $loginModel; 
@@ -49,8 +62,12 @@ class LoginView {
 	    }
 	}   
 	
-    public function keep() {
-            return isset($_POST[self::$keep]);
+    public function keepUserLoggedInButton() {
+		if(isset($_POST[self::$keep])) {
+			setcookie(self::$cookieName, $this->sessionUsername, time()+3600);
+			setcookie(self::$cookiePassword, $this->sessionPassword, time()+3600);
+			echo "testar";
+		}
     }
 
     public function getCookieName() {

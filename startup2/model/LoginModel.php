@@ -56,6 +56,14 @@ class LoginModel {
 	public function isLoggedIn() {
 		return isset($_SESSION['username']);
 	}
+
+	public function getSessionUsername() {
+		return $_SESSION['username'];
+	}
+	public function getSessionPassword() {
+		return $_SESSION['password'];
+	}
+	
 	public function logout() {
 		$this->message = "Bye bye!";
 		unset($_SESSION['username']);
