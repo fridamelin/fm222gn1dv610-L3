@@ -48,7 +48,7 @@ class LoginView {
         return isset($_POST[self::$login]);
 	}
 
-	public function getRequestUserName() {
+	public function setRequestUserName() {
         if (isset($_POST[self::$name])) {
             $inputUser = $_POST[self::$name];
             self::$keepUsername = $inputUser;
@@ -56,7 +56,7 @@ class LoginView {
         }
 	}   
 	
-    public function getRequestPassword() {
+    public function setRequestPassword() {
 	    if(isset($_POST[self::$password])){
 		return ($_POST[self::$password]); 
 	    }
@@ -64,18 +64,21 @@ class LoginView {
 	
     public function keepUserLoggedInButton() {
 		if(isset($_POST[self::$keep])) {
-			setcookie(self::$cookieName, $this->sessionUsername, time()+3600);
-			setcookie(self::$cookiePassword, $this->sessionPassword, time()+3600);
-			echo "testar";
+			setcookie(self::$cookieName, 'Admin', time()+3600); //$this->sessionUsername
+			setcookie(self::$cookiePassword, 'Password', time()+3600); // $this->sessionPassword
+			$this->message = 'Welcome and you will be remembered';
 		}
     }
 
-    public function getCookieName() {
-            return isset($_COOKIE[self::$cookieName]);
+    public function setCookieName() {
+        if(isset($_COOKIE[self::$cookieName])) {
+			return $_COOKIE[self::$cookieName];
+		}
     }
-
-    public function getCookiePassword() {
-            return isset($_COOKIE[self::$cookiePassword]);
+    public function setCookiePassword() {
+        if(isset($_COOKIE[self::$cookiePassword])) {
+				return $_COOKIE[self::$cookiePassword];
+			}
 	}
 	
 	public function userPressedLogoutButton() {

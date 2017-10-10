@@ -19,9 +19,8 @@ class LoginController {
     public function userWantsToLogin() {
 
         if ($this->loginView->userPressedLoginButton()) {
-
-            $usernameInputView =  $this->loginView->getRequestUserName();
-            $passwordInputView = $this->loginView->getRequestPassword(); 
+            $usernameInputView =  $this->loginView->setRequestUserName();
+            $passwordInputView = $this->loginView->setRequestPassword(); 
             $this->loginModel->getUsername($usernameInputView);
             $this->loginModel->getPassword($passwordInputView);
 
@@ -38,14 +37,26 @@ class LoginController {
             $this->loginView->setMessage($message);
 
             if($this->loginView->keepUserLoggedInButton()) {
-                $sessionUsername = $this->loginModel->getSessionUsername();
-                $this->loginView->setSessionUsername($sessionUsername);
+                
+                //$sessionUsername = $this->loginModel->getSessionUsername();
+                //$sessionPassword = $this->loginModel->getSessionPassword();
+                
+                //$this->loginView->setSessionUsername($sessionUsername);
+                //$this->loginView->setSessionPassword($sessionPassword);
 
-                $sessionPassword = $this->loginModel->getSessionPassword();
-                $this->loginView->setSessionPassword($sessionPassword);
+
+                //Skicka cookienamn samt password till modellen 
+                $cookieUsername = $this->loginView->setCookieName();
+                $cookiePassword = $this->loginView->setCookiePassword();
+
+                $this->loginModel->getCookieUsername($cookieUsername);
+                $this->loginModel->getCookiePassword($cookiePassword);
+
+                $message = $this->loginModel->getMessage();
+                $this->loginView->setMessage();
+
             }
-        }
-        else {
+        } else {
             if($this->loginView->userPressedLogoutButton()) {
                 $this->loginModel->logout();
                 $message = $this->loginModel->getMessage();
@@ -77,3 +88,4 @@ class LoginController {
     }
     
 }
+
