@@ -7,6 +7,7 @@ require_once('view/RegisterView.php');
 require_once('model/LoginModel.php');
 require_once("model/RegisterModel.php");
 require_once("controller/LoginController.php");
+require_once("controller/RegisterController.php");
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
@@ -16,15 +17,14 @@ $v = new \view\LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
 $rv = new \view\RegisterView();
-$lc = new \controller\LoginController($v, $rv);
+$lc = new \controller\LoginController($v);
+$rc = new \controller\RegisterController($rv);
 $rm = new \model\RegisterModel();
 
 session_start();
 
-//TODO: Flytta till controllern?
-
 $loginModel = $lc->userWantsToLogin();
-$registerModel = $lc->userWantsToRegister();
+$registerModel = $rc->userWantsToRegister();
 
 if(isset($_SESSION['username'])){
     if(isset($_GET['register'])){
@@ -36,7 +36,7 @@ if(isset($_SESSION['username'])){
       if(isset($_GET['register'])){
          $lv->render($registerModel, $rv, $dtv);
     }else {
-         $lv->render($loginModel, $v, $dtv); // skriver jag $registerModel här så funkar registreringen men inte login
+         $lv->render($loginModel, $v, $dtv);
     }   
 }
 

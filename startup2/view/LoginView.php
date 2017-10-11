@@ -27,7 +27,7 @@ class LoginView {
 	}
 
 	public function setSessionPassword($sessionPassword) {
-		$this->setSessionPassword = $sessionPassword;
+		$this->sessionPassword = $sessionPassword;
 	}
 
 
@@ -79,6 +79,11 @@ class LoginView {
         if(isset($_COOKIE[self::$cookiePassword])) {
 				return $_COOKIE[self::$cookiePassword];
 		}
+	}
+
+	public function unsetCookies() {
+		setcookie(self::$cookieName, '', time()-3600);
+		setcookie(self::$cookiePassword, '', time()-3600);
 	}
 	
 	public function userPressedLogoutButton() {

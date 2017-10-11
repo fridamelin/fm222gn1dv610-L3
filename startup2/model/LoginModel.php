@@ -48,32 +48,34 @@ class LoginModel {
 		}
 	}
 
-	public function getCookieUsername($cookieUsername) {
-		$this->cookieName = $cookieUsername;
-	}
-	public function getCookiePassword($cookiePassword) {
-		$this->cookiePassword = $cookiePassword;
-	}
 
 	public function login($usernameInputView, $passwordInputView) {
 		if($usernameInputView == 'Admin' && $passwordInputView == 'Password'){
-			$this->message = "Welcome";
+			if($this->isLoggedIn() == false) {
+				$this->message = "Welcome";
+			}
 			$_SESSION['username'] = $usernameInputView;
 			$_SESSION['password'] = $passwordInputView;
 		}
-		//Verkar inte fungera .... 
-		else if (isset($cookieUsername) && isset($cookiePassword)) {
+	}
+
+	public function loginCookie($cookieUsername, $cookiePassword) {
+		if ($cookieUsername == '' || $cookiePassword == ''){
+			return false; 
+		}
 			if($cookieUsername == 'Admin' && $cookiePassword == 'Password') {
 				if(!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 					$this->message = 'Welcome back with cookie';
 				}
 				$_SESSION['username'] = $cookieUsername;
-				$_SESSION['password'] = $tcookiePassword;
+				$_SESSION['password'] = $cookiePassword;
+				return true;
 			} else {
+				$this->logout();
 				$this->message = 'Wrong information in cookies';
-				//Sätt cookies till '' ???
+				return false; 
 			}
-		}
+		
 	}
 
 	
@@ -81,7 +83,7 @@ class LoginModel {
 		return isset($_SESSION['username']);
 	}
 
-	//Ska detta vara i controllern istället? 
+
 	public function getSessionUsername() {
 		return $_SESSION['username'];
 	}
@@ -90,7 +92,9 @@ class LoginModel {
 	}
 
 	public function logout() {
-		$this->message = "Bye bye!";
+		if($this->isLoggedIn() == true){
+			$this->message = "Bye bye!";
+		}
 		unset($_SESSION['username']);
 		unset($_SESSION['password']);			
 	}
