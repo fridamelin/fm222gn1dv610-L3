@@ -20,7 +20,6 @@ class LoginModel {
 	}
 
 
-
 	public function checkPassword($passwordInputView, $usernameInputView) {
 		if($passwordInputView == '') {
 			$this->message = "Password is missing";
@@ -74,15 +73,13 @@ class LoginModel {
 				$this->logout();
 				$this->message = 'Wrong information in cookies';
 				return false; 
-			}
-		
+			}	
 	}
 
-	
+
 	public function isLoggedIn() {
 		return isset($_SESSION['username']);
 	}
-
 
 	public function getSessionUsername() {
 		return $_SESSION['username'];

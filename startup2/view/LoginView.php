@@ -21,7 +21,6 @@ class LoginView {
 		$this->message = $message;
 	}
 
-
 	public function setSessionUsername($sessionUsername) {
 		$this->sessionUsername = $sessionUsername;
 	}
@@ -36,6 +35,7 @@ class LoginView {
 		$this->loginModel = $loginModel; 
 
 		if($loginModel->isLoggedIn()){
+			
 			return $this->generateLogoutButtonHTML($this->message);
 		} else 
 		{
