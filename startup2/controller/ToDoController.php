@@ -14,7 +14,13 @@ class ToDoController {
     public function userWantsToAddTodo() {
         if($this->reminderView->userPressedAddButton()) {
             $this->reminderModel->checkIfUserIsLoggedIn();
+            $message = $this->reminderModel->getMessage();
+            $this->reminderView->setMessage($message);
 
+
+            //Om användaren är inloggad: 
+            $value = $this->reminderView->keepTodoValue();
+            $this->reminderModel->saveToDo($value);
 
         }
     }
