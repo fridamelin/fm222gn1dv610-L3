@@ -13,11 +13,9 @@ class LoginController {
         $this->loginModel = new \model\LoginModel();
         $this->registerView = $registerView;
         $this->registerModel = new \model\RegisterModel();
-        
     }
 
     public function userWantsToLogin() {
-
         if ($this->loginView->userPressedLoginButton()) {
             $usernameInputView =  $this->loginView->setRequestUserName();
             $passwordInputView = $this->loginView->setRequestPassword(); 
@@ -36,27 +34,25 @@ class LoginController {
             $message = $this->loginModel->getMessage();
             $this->loginView->setMessage($message);
 
-            if($this->loginView->keepUserLoggedInButton()) {
+            if($this->loginView->userPressedKeepMeLoggedInButton()) {
                 
-                //$sessionUsername = $this->loginModel->getSessionUsername();
-                //$sessionPassword = $this->loginModel->getSessionPassword();
+                $sessionUsername = $this->loginModel->getSessionUsername();
+                $sessionPassword = $this->loginModel->getSessionPassword();
                 
-                //$this->loginView->setSessionUsername($sessionUsername);
-                //$this->loginView->setSessionPassword($sessionPassword);
+                $this->loginView->setSessionUsername($sessionUsername);
+                $this->loginView->setSessionPassword($sessionPassword);
+                $this->loginView->keepUserLoggedIn();
 
 
-                //Skicka cookienamn samt password till modellen 
-                $cookieUsername = $this->loginView->setCookieName();
-                $cookiePassword = $this->loginView->setCookiePassword();
+                //Skicka cookienamn samt password till modellen????
+                $cookieUsername = $this->loginView->getCookieName();
+                $cookiePassword = $this->loginView->getCookiePassword();
 
-                $this->loginModel->getCookieUsername($cookieUsername);
-                $this->loginModel->getCookiePassword($cookiePassword);
-
-                $message = $this->loginModel->getMessage();
-                $this->loginView->setMessage();
+                $this->loginModel->setCookieUsername($cookieUsername);
+                $this->loginModel->setCookiePassword($cookiePassword);
 
             }
-        } else {
+        }else {
             if($this->loginView->userPressedLogoutButton()) {
                 $this->loginModel->logout();
                 $message = $this->loginModel->getMessage();
@@ -66,6 +62,7 @@ class LoginController {
         return $this->loginModel; 
     }
 
+    //TODO: Lägg i en egen controller
     public function userWantsToRegister() {
 
         if($this->registerView->userPressedRegisterButton()) {
@@ -82,10 +79,10 @@ class LoginController {
             $this->registerView->setRegisterMessages($message);
 
             $this->registerModel->checkChosenPassword($password);
-            $messages = $this->registerModel->getRegisterMessages();
+            $message = $this->registerModel->getRegisterMessages();
             $this->registerView->setRegisterMessages($message);
         }
-    }
-    
+        return $this->registerModel;
+    }  
 }
 

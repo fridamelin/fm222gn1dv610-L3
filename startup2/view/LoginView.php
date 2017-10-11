@@ -3,7 +3,6 @@
 namespace view; 
 
 class LoginView {
-
     private static $login = 'LoginView::Login';
     private static $logout = 'LoginView::Logout';
     private static $name = 'LoginView::UserName';
@@ -61,24 +60,25 @@ class LoginView {
 		return ($_POST[self::$password]); 
 	    }
 	}   
-	
-    public function keepUserLoggedInButton() {
-		if(isset($_POST[self::$keep])) {
-			setcookie(self::$cookieName, 'Admin', time()+3600); //$this->sessionUsername
-			setcookie(self::$cookiePassword, 'Password', time()+3600); // $this->sessionPassword
-			$this->message = 'Welcome and you will be remembered';
-		}
-    }
 
-    public function setCookieName() {
+    public function userPressedKeepMeLoggedInButton() {
+		return isset($_POST[self::$keep]); 
+	}
+	public function keepUserLoggedIn(){
+		setcookie(self::$cookieName, $this->sessionUsername, time()+3600); 
+		setcookie(self::$cookiePassword, $this->sessionPassword, time()+3600);
+		$this->message = 'Welcome and you will be remembered';
+	}
+
+    public function getCookieName() {
         if(isset($_COOKIE[self::$cookieName])) {
 			return $_COOKIE[self::$cookieName];
 		}
     }
-    public function setCookiePassword() {
+    public function getCookiePassword() {
         if(isset($_COOKIE[self::$cookiePassword])) {
 				return $_COOKIE[self::$cookiePassword];
-			}
+		}
 	}
 	
 	public function userPressedLogoutButton() {
