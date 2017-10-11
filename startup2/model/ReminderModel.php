@@ -1,31 +1,39 @@
 <?php
 
 namespace model;
-
 class reminderModel {
 	
 	private $message = '';
+	private $textboxValue;
 	
 	public function getMessage() {
 		return $this->message;
 	}
-
-
 	public function checkIfUserIsLoggedIn() {
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
-			//Anropa funktionen saveTodo();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function writeToFile($value) {
+		if($this->checkIfUserIsLoggedIn() == true) {
+			$this->saveToDo($value);
 			$this->message = 'Du är inloggad <-- Detta är meddelandet';
 			echo "Du är inloggad";
 		} else {
 			$this->message = 'Du är inte inloggad <-- Detta är meddelandet';
-			//Sätt meddelande till = You need to Login to write a ToDo!
 			echo "Du är inte inloggad";
 		}
 	}
 
-	public function saveToDo() {
-		//Spara texten från vyn 
-		//Gör på samma sätt som när vi sparade Admin till usernaeme input? 
+	public function saveToDo($value) {
+		$this->textboxValue = $value;
+		$my_file = 'ToDos.txt';
+		$handle = fopen($my_file, 'w');
+		$data = $this->textboxValue;
+		fwrite($handle, $data);
 	}
 
   //Trycker på knappen "Add" i ReminderView CHECK

@@ -21,7 +21,6 @@ class ReminderView {
 	public function keepTodoValue() {
         if (isset($_POST[self::$toDo])) {
             $toDoValue= $_POST[self::$toDo];
-            //Spara $toDoValue --> till fil 
         }
 	}   
     
