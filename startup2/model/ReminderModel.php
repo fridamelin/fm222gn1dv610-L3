@@ -9,10 +9,11 @@ class reminderModel {
 	public function getMessage() {
 		return $this->message;
 	}
-
+	//Sätt värdet i input till $value;
 	public function setValueInTextBox($value) {
-		$this->$textboxValue = $value;
+		$this->textboxValue = $value;
 	}
+	//Kolla om användaren är inloggad eller inte 
 	public function checkIfUserIsLoggedIn() {
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
 		return true;
@@ -20,18 +21,16 @@ class reminderModel {
 		return false; 
 		}
 	}
-
+	//Skriv toDo:n till en fil.. FUNGERAR EJ
 	public function writeToFile() {
 		if($this->checkIfUserIsLoggedIn() == true) {
 			$my_file = 'ToDos.txt';
 			$handle = fopen($my_file, 'w');
 			$data = $this->textboxValue;
-			fwrite($handle, $data);
-			$this->message = 'Du är inloggad <-- Detta är meddelandet';
-			echo "Du är inloggad";
+			fwrite($handle, $data); 
+			$this->message = 'Saved!';
 		} else {
-			$this->message = 'Du är inte inloggad <-- Detta är meddelandet';
-			echo "Du är inte inloggad";
+			$this->message = 'You need to login!';
 		}
 	}
 

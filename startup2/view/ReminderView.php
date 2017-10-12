@@ -21,7 +21,7 @@ class ReminderView {
 
     public function getValue() {
         $input = $_POST[self::$toDo];
-        return self::$keepValue = $input;
+        return $input;
     }
 
     
@@ -30,6 +30,7 @@ class ReminderView {
             '<h2>Add something to your ToDo list:</h2>
             <form method="post" id="reminderform">
             <fieldset>
+            <p id="' . self::$messageId . '">' . $this->message .  '</p>
             <label for="' . self::$toDo . '"></label>
             <input type="text" id="' . self::$toDo . '" name="' . self::$toDo . '" value="' . self::$keepValue . '"/>
             <br>
