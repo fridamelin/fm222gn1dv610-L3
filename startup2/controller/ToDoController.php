@@ -22,8 +22,12 @@ class ToDoController {
 
         } else {
             if($this->reminderView->userPressedShowButton()) {
+                $answer = $this->reminderModel->canIShowFile();
+                $this->reminderView->getAnswer($answer);
                 $this->reminderView->showFile();
-            }
+                $message = $this->reminderModel->getMessage();
+                $this->reminderView->setMessage($message);
+            } 
         }
     }     
 }

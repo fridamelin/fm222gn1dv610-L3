@@ -8,6 +8,7 @@ class ReminderView {
     private static $showToDos = 'ReminderView::Show';
     private static $toDo = 'ReminderView::ToDo';
     private $message = '';
+    private $answer;
 
 
 
@@ -23,15 +24,19 @@ class ReminderView {
         $input = $_POST[self::$toDo];
         return $input;
     }
+    public function getAnswer($answer) {
+        $this->answer = $answer;
+    }
 
     public function userPressedShowButton() {
         return isset($_POST[self::$showToDos]);
     }
 
-    //Fungerar inte.. 
 	public function showFile() {
-        $myFile = 'ToDos.txt';
-        echo file_get_contents($myFile);
+        if($this->answer == true) {
+            $myFile = 'ToDos.txt';
+            echo file_get_contents($myFile);
+        } 
 	}
     
     public function reminder() {
@@ -48,5 +53,14 @@ class ReminderView {
             </fieldset>
             </form>';
     }
+
+   // public function showToDoForm() {
+     //   return 
+       // '<h2>ToDo:</h2>
+       // <fieldset>
+        //<p id="' . self::$reminder . '">' . $this->reminder . '</p> 
+        //</fieldset>
+        //'
+    //}
 
 }

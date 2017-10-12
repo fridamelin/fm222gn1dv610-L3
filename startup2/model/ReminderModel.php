@@ -5,15 +5,20 @@ class reminderModel {
 	
 	private $message = '';
 	private $textboxValue;
+	private $test;
 	
 	public function getMessage() {
 		return $this->message;
 	}
-	//Sätt värdet i input till $value;
+
 	public function setValueInTextBox($value) {
 		$this->textboxValue = $value;
 	}
-	//Kolla om användaren är inloggad eller inte 
+
+	public function testar($testar) {
+		$this->test = $testar;
+	}
+
 	public function checkIfUserIsLoggedIn() {
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
 		return true;
@@ -21,11 +26,11 @@ class reminderModel {
 		return false; 
 		}
 	}
-	//Skriv toDo:n till en fil.. FUNGERAR EJ
+	//Nu skriver den över, vill att den ska lägga til..
 	public function writeToFile() {
 		if($this->checkIfUserIsLoggedIn() == true) {
 			$my_file = 'ToDos.txt';
-			$handle = fopen($my_file, 'w');
+			$handle = fopen($my_file, 'w+') or die("Couldn't open the file");
 			$data = $this->textboxValue;
 			fwrite($handle, $data); 
 			$this->message = 'Saved!';
@@ -34,15 +39,12 @@ class reminderModel {
 		}
 	}
 
-
-
-  //Trycker på knappen "Add" i ReminderView CHECK
-  //Kolla om man är inloggad eller inte CHECK
-  //INLOGGAD: --> postar texten i rutan till en fil som skriver ut texen på sidan 
-  //INTE INLOGGAD: --> sätt message = 'Du måste vara inloggad för att posta din anteckning!'
-  
-
-  //Funderingar: 
-  //Ska det skrivas till en annan ruta eller ska det skrivas ut direkt på sidan?
-
+	public function canIShowFile() {
+		if($this->checkIfUserIsLoggedIn() == true) {
+			return true;
+		} else {
+			$this->message = 'Sorry, you need to login to see your ToDo:s';
+			return false; 
+		}
+	}	
 }
