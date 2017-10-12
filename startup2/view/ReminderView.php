@@ -3,35 +3,39 @@
 namespace view; 
 
 class ReminderView {
+    private static $messageId = 'ReminderView::Message';
     private static $reminder = 'ReminderView::Reminder';
     private static $toDo = 'ReminderView::ToDo';
+    public static $keepValue = '';
     private $message = '';
 
 
 
     public function setMessage($message) {
 		$this->message = $message;
-	}
+    }
 
     public function userPressedAddButton() {
 		return isset($_POST[self::$reminder]); 
     }
 
+    public function getValue() {
+        $input = $_POST[self::$toDo];
+        return self::$keepValue = $input;
+    }
 
-	public function keepTodoValue() {
-        if (isset($_POST[self::$toDo])) {
-            $toDoValue= $_POST[self::$toDo];
-        }
-	}   
     
     public function reminder() {
         return 
             '<h2>Add something to your ToDo list:</h2>
             <form method="post" id="reminderform">
-            <textarea for="' . self::$toDo . '"rows="3" cols="50" name="reminder">Enter a reminder here..</textarea> 
+            <fieldset>
+            <label for="' . self::$toDo . '"></label>
+            <input type="text" id="' . self::$toDo . '" name="' . self::$toDo . '" value="' . self::$keepValue . '"/>
             <br>
             <input id="submit" type="submit" name="' . self::$reminder . '"  value="Add" />
             <br>
+            </fieldset>
             </form>';
     }
 

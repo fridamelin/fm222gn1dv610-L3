@@ -9,17 +9,24 @@ class reminderModel {
 	public function getMessage() {
 		return $this->message;
 	}
+
+	public function setValueInTextBox($value) {
+		$this->$textboxValue = $value;
+	}
 	public function checkIfUserIsLoggedIn() {
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
-			return true;
-		} else {
-			return false;
+		return true;
+	} else {
+		return false; 
 		}
 	}
 
-	public function writeToFile($value) {
+	public function writeToFile() {
 		if($this->checkIfUserIsLoggedIn() == true) {
-			$this->saveToDo($value);
+			$my_file = 'ToDos.txt';
+			$handle = fopen($my_file, 'w');
+			$data = $this->textboxValue;
+			fwrite($handle, $data);
 			$this->message = 'Du är inloggad <-- Detta är meddelandet';
 			echo "Du är inloggad";
 		} else {
@@ -28,13 +35,6 @@ class reminderModel {
 		}
 	}
 
-	public function saveToDo($value) {
-		$this->textboxValue = $value;
-		$my_file = 'ToDos.txt';
-		$handle = fopen($my_file, 'w');
-		$data = $this->textboxValue;
-		fwrite($handle, $data);
-	}
 
   //Trycker på knappen "Add" i ReminderView CHECK
   //Kolla om man är inloggad eller inte CHECK
