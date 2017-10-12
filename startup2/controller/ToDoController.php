@@ -16,13 +16,14 @@ class ToDoController {
             $value = $this->reminderView->getValue();
             $this->reminderModel->setValueInTextBox($value);
 
-            
-            //Spara värdet till en fil 
             $this->reminderModel->writeToFile();
-
-            //Skriv ut meddelandet 
             $message = $this->reminderModel->getMessage();
             $this->reminderView->setMessage($message);
+
+        } else {
+            if($this->reminderView->userPressedShowButton()) {
+                $this->reminderView->showFile();
+            }
         }
-    }
+    }     
 }

@@ -35,6 +35,7 @@ class reminderModel {
 	}
 
 
+
   //Trycker på knappen "Add" i ReminderView CHECK
   //Kolla om man är inloggad eller inte CHECK
   //INLOGGAD: --> postar texten i rutan till en fil som skriver ut texen på sidan 

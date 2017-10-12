@@ -12,7 +12,7 @@ class LayoutView {
           <title>Login Example</title>
         </head>
         <body>
-          <h1>Assignment 2</h1>
+          <h1>Assignment 3</h1>
          '. $this->registerNew() . '
         
           ' . $this->renderIsLoggedIn($loginModel->isLoggedIn()) . '
