@@ -1,6 +1,5 @@
 <?php
 
-
 namespace controller;
 
 class RegisterController {
@@ -11,12 +10,10 @@ class RegisterController {
         $this->registerView = $registerView;
         $this->registerModel = new \model\RegisterModel();
     }
-//TODO: Lägg i en egen controller
 
     public function userWantsToRegister() {
-
-        if($this->registerView->userPressedRegisterButton()) {
-
+        if($this->registerView->userPressedRegisterButton()) 
+        {
             $username = $this->registerView->getChosenUsername();
             $password = $this->registerView->getChosenPassword();
             $repeatedPassword = $this->registerView->getConfirmedPassword();

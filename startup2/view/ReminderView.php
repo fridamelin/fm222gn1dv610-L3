@@ -14,10 +14,12 @@ class ReminderView {
     public function setMessage($message) {
 		$this->message = $message;
     }
+
     public function getValue() {
         $input = $_POST[self::$toDo];
         return $input;
     }
+
     public function getAnswer($answer) {
         $this->answer = $answer;
     }
@@ -62,7 +64,5 @@ class ReminderView {
             </fieldset>
             ';
         }
-       
     }
-
 }

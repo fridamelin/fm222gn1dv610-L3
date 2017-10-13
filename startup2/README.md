@@ -8,7 +8,7 @@ How to test?
 -Please visit this link: http://1dv610fm.000webhostapp.com/startup2/startup2/
 
 How to install?
--You don't need to install anything. 
+-You don't need to install anything just visit the link above. 
 
 Status: What is implemented, or not? 
 -Please visit this link: https://github.com/dntoll/1dv610/blob/master/assignments/A2_resources/TestCases.md
@@ -21,14 +21,14 @@ Every test case is tested and done except:
 4.10
 4.11
 
-Extra
+Extra:
 -I have done a ToDo -list that only should work if you are logged in. 
-So, test case:
+So, test cases:
 
 1. Write something in the input for ToDo's without logging in. Press "Add".
     - You should get a message = "You need to login!"
 
-2. Write something in the input for ToDo's, now you should be logged in. Press "Add".
+2. Login and write something in the input for ToDo's. Press "Add".
     -You should get a message = "Saved!"
     
 3. Log in and press the "Show ToDo's"-button, 

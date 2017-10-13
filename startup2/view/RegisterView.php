@@ -8,16 +8,46 @@ class RegisterView {
 	private static $password = 'RegisterView::Password';
 	private static $checkPassword = 'RegisterView::PasswordRepeat';
 	private static $register = 'RegisterView::Register';
+	private $registerModel; 
 	private static $usernameStay = '';
 	private $message = '';
-	private $registerModel; 
 
+	
 	public function setRegisterMessages($message) {
 		$this->message = $message; 
 	}
 
+	public function getChosenUsername(){
+		$input = $_POST[self::$login];
+		return self::$usernameStay = $input;
+	}
+
+	public function getChosenPassword() {
+		return $_POST[self::$password];
+	}
+
+	public function getConfirmedPassword() {
+		return $_POST[self::$checkPassword];
+	}
+
+	public function userPressedRegisterButton() {
+		return isset($_POST[self::$register]);
+	}
+
+	public function isRegister() {
+		return isset($_GET['register']);
+	}
+
+	private function renderIsLoggedIn($isLoggedIn) {
+		if ($isLoggedIn) {
+			return '<h2>Logged in</h2>';
+		}
+		else {
+			return '<h2>Not logged in</h2>';
+		}
+	}
+
 	public function response() {
-	 
 		return '
 			<h2>Register new user</h2>
 			<form action="?register" method="post" enctype="multipart/formdata">
@@ -38,32 +68,5 @@ class RegisterView {
 				</fieldset>
 				</form>
 					';
-	}
-
-	public function getChosenUsername(){
-		$input = $_POST[self::$login];
-		return self::$usernameStay = $input;
-	}
-	public function getChosenPassword() {
-		return $_POST[self::$password];
-	}
-	public function getConfirmedPassword() {
-		return $_POST[self::$checkPassword];
-	}
-	public function userPressedRegisterButton() {
-		return isset($_POST[self::$register]);
-	}
-	public function isRegister() {
-		return isset($_GET['register']);
-	}
-
-	private function renderIsLoggedIn($isLoggedIn) {
-		if ($isLoggedIn) {
-			return '<h2>Logged in</h2>';
-		}
-		else {
-			return '<h2>Not logged in</h2>';
-		}
-	}
- 
+	} 
 }

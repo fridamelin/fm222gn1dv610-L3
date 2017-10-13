@@ -1,8 +1,8 @@
 <?php
 
 namespace model;
+
 class reminderModel {
-	
 	private $message = '';
 	private $textboxValue;
 	private $test;
@@ -15,24 +15,18 @@ class reminderModel {
 		$this->textboxValue = $value;
 	}
 
-	public function testar($testar) {
-		$this->test = $testar;
-	}
-
 	public function checkIfUserIsLoggedIn() {
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])) {
-		return true;
-	} else {
-		return false; 
+			return true;
+		}else {
+			return false; 
 		}
 	}
 	
 	public function writeToFile() {
 		if($this->checkIfUserIsLoggedIn() == true) {
 			$my_file = 'ToDos.txt';
-		
 			$handle = fopen($my_file, 'a') or die("Couldn't open the file");
-	
 			$data =  "<br>" . "*" . $this->textboxValue;
 			fwrite($handle, $data); 
 			$this->message = 'Saved!';

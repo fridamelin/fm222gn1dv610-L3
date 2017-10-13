@@ -3,7 +3,6 @@
 namespace model;
 
 class RegisterModel {
-
 	private $usernameInputRegister;
 	private $passwordInputRegister;
 	private $confirmedPassword;

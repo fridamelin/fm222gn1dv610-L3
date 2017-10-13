@@ -12,7 +12,8 @@ class ToDoController {
     }
 
     public function userWantsToAddTodo() {
-        if($this->reminderView->userPressedAddButton()) {
+        if($this->reminderView->userPressedAddButton()) 
+        {
             $value = $this->reminderView->getValue();
             $this->reminderModel->setValueInTextBox($value);
 
@@ -21,13 +22,13 @@ class ToDoController {
             $this->reminderView->setMessage($message);
 
         } else {
-            if($this->reminderView->userPressedShowButton()) {
+            if($this->reminderView->userPressedShowButton()) 
+            {
                 $answer = $this->reminderModel->canIShowFile();
                 $this->reminderView->getAnswer($answer);
                 $this->reminderView->showFile();
                 $message = $this->reminderModel->getMessage();
                 $this->reminderView->setMessage($message);
-
             } 
         }
     }     

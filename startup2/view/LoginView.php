@@ -11,11 +11,13 @@ class LoginView {
     private static $cookiePassword = 'LoginView::CookiePassword';
     private static $keep = 'LoginView::KeepMeLoggedIn';
     private static $messageId = 'LoginView::Message';
-    private static $keepUsername = '';
-    private $message = '';
-	private $loginModel;
 	private $sessionUsername;
 	private $sessionPassword;
+	private $loginModel;
+    private static $keepUsername = '';
+    private $message = '';
+
+
 
 	public function setMessage($message) {
 		$this->message = $message;
@@ -31,16 +33,14 @@ class LoginView {
 
 	public function response($loginModel) {
 		$this->loginModel = $loginModel; 
-
-		if($loginModel->isLoggedIn()){
-			
+		if($loginModel->isLoggedIn())
+		{
 			return $this->generateLogoutButtonHTML($this->message);
 		} else 
 		{
 			return $this->generateLoginFormHTML($this->message);
 		}
 	}
-
 
 	public function userPressedLoginButton() {
         return isset($_POST[self::$login]);
@@ -53,32 +53,34 @@ class LoginView {
             return $inputUser;
         }
 	}   
+
     public function setRequestPassword() {
 	    if(isset($_POST[self::$password])){
 		return ($_POST[self::$password]); 
 	    }
 	}   
 
-
     public function userPressedKeepMeLoggedInButton() {
 		return isset($_POST[self::$keep]); 
 	}
+
 	public function keepUserLoggedIn(){
 		setcookie(self::$cookieName, $this->sessionUsername, time()+3600); 
 		setcookie(self::$cookiePassword, $this->sessionPassword, time()+3600);
 		$this->message = 'Welcome and you will be remembered';
 	}
+
     public function getCookieName() {
         if(isset($_COOKIE[self::$cookieName])) {
 			return $_COOKIE[self::$cookieName];
 		}
-    }
+	}
+	
     public function getCookiePassword() {
         if(isset($_COOKIE[self::$cookiePassword])) {
 				return $_COOKIE[self::$cookiePassword];
 		}
 	}
-
 
 	public function unsetCookies() {
 		setcookie(self::$cookieName, '', time()-3600);
@@ -88,7 +90,6 @@ class LoginView {
 	public function userPressedLogoutButton() {
 		return isset($_POST[self::$logout]);
 	}
-
 
 	private function generateLogoutButtonHTML($message) {
 		return '

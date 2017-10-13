@@ -9,11 +9,11 @@ class LoginController {
     public function __construct($Loginview) {
         $this->loginView = $Loginview; 
         $this->loginModel = new \model\LoginModel();
-    
     }
 
     public function userWantsToLogin() {
-        if ($this->loginView->userPressedLoginButton()) {
+        if ($this->loginView->userPressedLoginButton()) 
+        {
             $usernameInputView =  $this->loginView->setRequestUserName();
             $passwordInputView = $this->loginView->setRequestPassword(); 
             $this->loginModel->getUsername($usernameInputView);
@@ -31,8 +31,8 @@ class LoginController {
             $message = $this->loginModel->getMessage();
             $this->loginView->setMessage($message);
 
-            if($this->loginView->userPressedKeepMeLoggedInButton()) {
-                
+            if($this->loginView->userPressedKeepMeLoggedInButton()) 
+            {
                 $sessionUsername = $this->loginModel->getSessionUsername();
                 $sessionPassword = $this->loginModel->getSessionPassword();
                 
@@ -40,23 +40,24 @@ class LoginController {
                 $this->loginView->setSessionPassword($sessionPassword);
                 $this->loginView->keepUserLoggedIn();
             }
-        }else if ($this->loginView->userPressedLogoutButton()){
+        } else if ($this->loginView->userPressedLogoutButton())
+            {
                 $this->loginModel->logout();
                 $this->loginView->unsetCookies();
                 $message = $this->loginModel->getMessage();
                 $this->loginView->setMessage($message);
-        }else if ($this->loginModel->isLoggedIn() == false) {
-            $cookieUsername = $this->loginView->getCookieName();
-            $cookiePassword = $this->loginView->getCookiePassword();
-            if($this->loginModel->loginCookie($cookieUsername, $cookiePassword) == false){
-                $this->loginView->unsetCookies();
+            }else if ($this->loginModel->isLoggedIn() == false) 
+            {
+                $cookieUsername = $this->loginView->getCookieName();
+                $cookiePassword = $this->loginView->getCookiePassword();
+                    if($this->loginModel->loginCookie($cookieUsername, $cookiePassword) == false)
+                    {
+                        $this->loginView->unsetCookies();
+                    }
+                $message = $this->loginModel->getMessage();
+                $this->loginView->setMessage($message);
             }
-            $message = $this->loginModel->getMessage();
-            $this->loginView->setMessage($message);
-        }
         return $this->loginModel; 
     }
-
-  
 }
 

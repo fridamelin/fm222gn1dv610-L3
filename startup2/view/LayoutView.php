@@ -45,8 +45,6 @@ class LayoutView {
     }else
     {
       return '<a href="?register">Register a new user</a>';
-    }
-     
+    } 
   }
-
 }
