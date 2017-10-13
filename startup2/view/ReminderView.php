@@ -33,8 +33,7 @@ class ReminderView {
 	public function showFile() {
         if($this->answer == true) {
             $myFile = 'ToDos.txt';
-            $note = file_get_contents($myFile);
-            return $note; 
+            return file_get_contents($myFile);
         } 
 	}
     

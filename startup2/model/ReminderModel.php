@@ -26,12 +26,15 @@ class reminderModel {
 		return false; 
 		}
 	}
-	//Nu skriver den över, vill att den ska lägga till..
+	
 	public function writeToFile() {
 		if($this->checkIfUserIsLoggedIn() == true) {
 			$my_file = 'ToDos.txt';
-			$handle = fopen($my_file, 'w+') or die("Couldn't open the file");
-			$data = $this->textboxValue;
+		
+			$handle = fopen($my_file, 'a') or die("Couldn't open the file");
+	
+			$data =  "<br>" . "*" . $this->textboxValue;
+			var_dump(file_get_contents($my_file));
 			fwrite($handle, $data); 
 			$this->message = 'Saved!';
 		} else {
