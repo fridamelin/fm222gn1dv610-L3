@@ -5,13 +5,13 @@ Assignment 3 by Frida Melin
 ---------------------------
 
 How to test?
--Please visit this link: http://1dv610fm.000webhostapp.com/startup2/startup2/
+- Please visit this link: http://1dv610fm.000webhostapp.com/startup2/startup2/
 
 How to install?
--You don't need to install anything just visit the link above. 
+- You don't need to install anything just visit the link above. 
 
 Status: What is implemented, or not? 
--Please visit this link: https://github.com/dntoll/1dv610/blob/master/assignments/A2_resources/TestCases.md
+- Please visit this link: https://github.com/dntoll/1dv610/blob/master/assignments/A2_resources/TestCases.md
 Every test case is tested and done except:
 3.6
 3.7
@@ -29,10 +29,10 @@ So, test cases:
     - You should get a message = "You need to login!"
 
 2. Login and write something in the input for ToDo's. Press "Add".
-    -You should get a message = "Saved!"
+    - You should get a message = "Saved!"
     
 3. Log in and press the "Show ToDo's"-button, 
-    -You should see all your ToDo's. 
+    - You should see all your ToDo's. 
 
 4. Press the "Show ToDo's"-button without being logged in.
-    -You should get a message "Sorry, you need to login to see your ToDo's"
+    - You should get a message "Sorry, you need to login to see your ToDo's"
