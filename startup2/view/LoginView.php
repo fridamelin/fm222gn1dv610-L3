@@ -29,8 +29,6 @@ class LoginView {
 		$this->sessionPassword = $sessionPassword;
 	}
 
-
-
 	public function response($loginModel) {
 		$this->loginModel = $loginModel; 
 
@@ -43,6 +41,7 @@ class LoginView {
 		}
 	}
 
+
 	public function userPressedLoginButton() {
         return isset($_POST[self::$login]);
 	}
@@ -54,12 +53,12 @@ class LoginView {
             return $inputUser;
         }
 	}   
-	
     public function setRequestPassword() {
 	    if(isset($_POST[self::$password])){
 		return ($_POST[self::$password]); 
 	    }
 	}   
+
 
     public function userPressedKeepMeLoggedInButton() {
 		return isset($_POST[self::$keep]); 
@@ -69,7 +68,6 @@ class LoginView {
 		setcookie(self::$cookiePassword, $this->sessionPassword, time()+3600);
 		$this->message = 'Welcome and you will be remembered';
 	}
-
     public function getCookieName() {
         if(isset($_COOKIE[self::$cookieName])) {
 			return $_COOKIE[self::$cookieName];
@@ -81,6 +79,7 @@ class LoginView {
 		}
 	}
 
+
 	public function unsetCookies() {
 		setcookie(self::$cookieName, '', time()-3600);
 		setcookie(self::$cookiePassword, '', time()-3600);
@@ -89,6 +88,7 @@ class LoginView {
 	public function userPressedLogoutButton() {
 		return isset($_POST[self::$logout]);
 	}
+
 
 	private function generateLogoutButtonHTML($message) {
 		return '

@@ -26,7 +26,7 @@ class reminderModel {
 		return false; 
 		}
 	}
-	//Nu skriver den över, vill att den ska lägga til..
+	//Nu skriver den över, vill att den ska lägga till..
 	public function writeToFile() {
 		if($this->checkIfUserIsLoggedIn() == true) {
 			$my_file = 'ToDos.txt';

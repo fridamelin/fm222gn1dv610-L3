@@ -33,7 +33,7 @@ class RegisterView {
 					<label for="' . self::$checkPassword .'" >Repeat password :</label>
 					<input type="password" size="20" name="' . self::$checkPassword . '" id="' . self::$checkPassword . '" value="" />
 					<br>
-					<input id="submit" type="submit" name="' . self::$register . '"  value="Register" />
+					<input id="submit2" type="submit" name="' . self::$register . '"  value="Register" />
 					<br>
 				</fieldset>
 				</form>

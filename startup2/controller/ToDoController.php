@@ -27,6 +27,8 @@ class ToDoController {
                 $this->reminderView->showFile();
                 $message = $this->reminderModel->getMessage();
                 $this->reminderView->setMessage($message);
+
+                //$this->reminderView->showToDoForm();
             } 
         }
     }     

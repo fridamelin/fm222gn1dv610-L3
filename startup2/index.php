@@ -21,15 +21,20 @@ $dtv = new \view\DateTimeView();
 $lv = new \view\LayoutView();
 $rv = new \view\RegisterView();
 $rminderView = new \view\ReminderView();
+
 $lc = new \controller\LoginController($v);
 $rc = new \controller\RegisterController($rv);
 $rminderController = new \controller\ToDoController($rminderView);
+
 $rm = new \model\RegisterModel();
 $rminderModel = new \model\ReminderModel();
 
 
 session_start();
 
+
+
+//Flytta härifrån 
 
 $loginModel = $lc->userWantsToLogin();
 $registerModel = $rc->userWantsToRegister();
