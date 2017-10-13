@@ -53,6 +53,9 @@ class RegisterView {
 	public function userPressedRegisterButton() {
 		return isset($_POST[self::$register]);
 	}
+	public function isRegister() {
+		return isset($_GET['register']);
+	}
 
 	private function renderIsLoggedIn($isLoggedIn) {
 		if ($isLoggedIn) {

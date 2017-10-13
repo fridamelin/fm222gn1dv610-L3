@@ -34,7 +34,6 @@ class reminderModel {
 			$handle = fopen($my_file, 'a') or die("Couldn't open the file");
 	
 			$data =  "<br>" . "*" . $this->textboxValue;
-			var_dump(file_get_contents($my_file));
 			fwrite($handle, $data); 
 			$this->message = 'Saved!';
 		} else {

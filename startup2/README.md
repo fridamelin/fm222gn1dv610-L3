@@ -13,11 +13,8 @@ How to install?
 Status: What is implemented, or not? 
 -Please visit this link: https://github.com/dntoll/1dv610/blob/master/assignments/A2_resources/TestCases.md
 Every test case is tested and done except:
-1.9?
-2.2?
-2.3?
-3.5?
 3.6
+3.7
 3.8
 4.8
 4.9
@@ -33,6 +30,7 @@ So, test case:
 
 2. Write something in the input for ToDo's, now you should be logged in. Press "Add".
     -You should get a message = "Saved!"
+    
 3. Log in and press the "Show ToDo's"-button, 
     -You should see all your ToDo's. 
 

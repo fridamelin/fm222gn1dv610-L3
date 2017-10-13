@@ -21,34 +21,27 @@ $dtv = new \view\DateTimeView();
 $lv = new \view\LayoutView();
 $rv = new \view\RegisterView();
 $rminderView = new \view\ReminderView();
-
 $lc = new \controller\LoginController($v);
 $rc = new \controller\RegisterController($rv);
 $rminderController = new \controller\ToDoController($rminderView);
-
 $rm = new \model\RegisterModel();
 $rminderModel = new \model\ReminderModel();
 
-
 session_start();
-
-
-
-//Flytta härifrån 
 
 $loginModel = $lc->userWantsToLogin();
 $registerModel = $rc->userWantsToRegister();
 $reminderModel = $rminderController->userWantsToAddTodo();
 $reminderView = $rminderView->reminder();
 
-if(isset($_SESSION['username'])){
-    if(isset($_GET['register'])){
+if($loginModel->isLoggedIn()){
+    if($rv->isRegister()){
          $lv->render($loginModel, $v, $dtv, $reminderView);
     }else {
          $lv->render($loginModel, $v, $dtv, $reminderView);
     }
 }else { 
-      if(isset($_GET['register'])){
+      if($rv->isRegister()){
          $lv->render($registerModel, $rv, $dtv, $reminderView);
     }else {
          $lv->render($loginModel, $v, $dtv, $reminderView);

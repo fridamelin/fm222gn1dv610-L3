@@ -36,6 +36,7 @@ class RegisterModel {
 			$this->message .= "Passwords do not match.";
 			}
 	}
+
 	public function isLoggedIn() {
 		return isset($_SESSION['username']);
 	}
